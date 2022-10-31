@@ -6,7 +6,7 @@ We can use nested for loops to iterate over each element in another array.
 
 For example, say you had a group of people, and you wanted to everyone to take turns shaking everyone's hand (other than themselves, of course).
 
-Visualize people sitting in a row. The first person stands up, walks in front and shakes each of the other's hands, and then sits down at the end of the row. Then the next person gets up and does the same thing ... until everyone has gone through the process ..
+Visualize people sitting in a row. The first person stands up, walks in front and shakes each of the other's hands, and then sits down at the end of the row. Then the next person gets up and does the same thing ... until everyone has gone through the process .
 
 ```js
 
