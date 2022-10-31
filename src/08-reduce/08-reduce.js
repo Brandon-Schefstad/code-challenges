@@ -9,7 +9,10 @@ Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 export const countNumberOfElements = (arr) => {
-  // Solution code here...
+	return arr.reduce((accumm) => {
+		accumm += 1;
+		return accumm;
+	}, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -23,7 +26,12 @@ eye color:
 ------------------------------------------------------------------------------------------------ */
 
 export const eyeColorTally = (arr) => {
-  // Solution code here...
+	return arr.reduce((accummulator, obj) => {
+		accummulator[obj.eye_color]
+			? (accummulator[obj.eye_color] += 1)
+			: (accummulator[obj.eye_color] = 1);
+		return accummulator;
+	}, {});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,7 +45,12 @@ eye color:
 ------------------------------------------------------------------------------------------------ */
 
 export const eyeColorNames = (arr) => {
-  // Solution code here...
+	return arr.reduce((accummulator, obj) => {
+		accummulator[obj.eye_color]
+			? accummulator[obj.eye_color].push(obj.name)
+			: (accummulator[obj.eye_color] = [obj.name]);
+		return accummulator;
+	}, {});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -46,9 +59,14 @@ CHALLENGE 4
 Write a function named countNumberOfChildren that, given the array of characters, uses reduce to return the total number of children in the data set.
 ------------------------------------------------------------------------------------------------ */
 
-
 export const countNumberOfChildren = (arr) => {
-  // Solution code here...
+	return arr.reduce((accummulator, obj) => {
+		if (obj.hasOwnProperty('children')) {
+			// console.log(obj.children.length);
+			accummulator += Number(obj.children.length);
+		}
+		return accummulator;
+	}, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -60,7 +78,16 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 export const calculateAverage = (arr) => {
-  // Solution code here...
+	const accummulator = {
+		count: 0,
+		sum: 0,
+	};
+	arr.reduce((accummulator, num) => {
+		accummulator.count += 1;
+		accummulator.sum += num;
+		return accummulator;
+	}, accummulator);
+	return accummulator.sum / accummulator.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -72,11 +99,30 @@ You are welcome to use the provided isPrime function.
 ------------------------------------------------------------------------------------------------ */
 
 const isPrime = (value) => {
-  // Solution code here...
+	let isPrime = true;
+	if (value === 1) {
+		isPrime = false;
+	}
+	if (value > 1) {
+		// looping through 2 to value-1
+		for (let i = 2; i < value; i++) {
+			if (value % i == 0) {
+				isPrime = false;
+				break;
+			}
+		}
+	}
+	return isPrime;
 };
 
 export const countPrimeNumbers = (arr) => {
-  // Solution code here...
+	return arr.reduce((accummulator, num) => {
+		if (isPrime(num)) {
+			// console.log(num);
+			accummulator += 1;
+		}
+		return accummulator;
+	}, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,7 +136,20 @@ Hint: The accumulator should begin as { min: 0, max: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 export const effortStats = (arr) => {
-  // Solution code here...
+	console.log(arr);
+	const accummulator = { min: 0, max: 0 };
+	return arr.reduce((accummulator, stat) => {
+		if (stat.effort > accummulator.max) {
+			console.log(stat.effort);
+			accummulator.max = stat.effort;
+		}
+		if (accummulator.min === 0) {
+			accummulator.min = stat.effort;
+		} else if (accummulator.min > stat.effort) {
+			accummulator.min = stat.effort;
+		}
+		return accummulator;
+	}, accummulator);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,5 +163,18 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 export const extractChildren = (arr) => {
-  // Solution code here...
+	const regex = /a/gi;
+	const accummulator = [];
+	return arr
+		.filter((character) => {
+			return character.name.match(regex);
+		})
+		.reduce((accummulator, character) => {
+			if (character.hasOwnProperty('children')) {
+				character.children.forEach((child) => {
+					accummulator.push(child);
+				});
+			}
+			return accummulator;
+		}, []);
 };

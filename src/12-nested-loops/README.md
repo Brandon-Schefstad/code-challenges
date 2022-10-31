@@ -1,11 +1,12 @@
 # Nested For Loops
 
 ## Overview
+
 We can use nested for loops to iterate over each element in another array.
 
-For example, say you had a group of people, and you wanted to everyone to take turns shaking everyone's hand (other than themselves, of course). 
+For example, say you had a group of people, and you wanted to everyone to take turns shaking everyone's hand (other than themselves, of course).
 
-Visualize people sitting in a row.  The first person stands up, walks in front and shakes each of the other's hands, and then sits down at the end of the row. Then the next person gets up and does the same thing ... until everyone has gone through the process ...
+Visualize people sitting in a row. The first person stands up, walks in front and shakes each of the other's hands, and then sits down at the end of the row. Then the next person gets up and does the same thing ... until everyone has gone through the process ..
 
 ```js
 
@@ -33,7 +34,7 @@ Ollie shakes Fran's hand
 
 ```
 
-Alternatively, you can have 2 different arrays that loop over each other. Here, we'll create a simple grid, like a tic-tac-toe board.  First we'll iterate over the 'height' which creates the rows, and then over the 'width', to create the columns.  
+Alternatively, you can have 2 different arrays that loop over each other. Here, we'll create a simple grid, like a tic-tac-toe board. First we'll iterate over the 'height' which creates the rows, and then over the 'width', to create the columns.
 
 ```js
 let drawGrid = (height,width) => {
@@ -52,35 +53,40 @@ drawGrid(3,,3)
 
 _|_|_
 _|_|_
- | | 
+ | |
 
 ```
 
 ### Caveats and Notes
-- Looping an array over itself like the first example can lead to massive performance problems!
-- Make sure that in your nested loops that you use unique and meaningful variable names.
+
+-   Looping an array over itself like the first example can lead to massive performance problems!
+-   Make sure that in your nested loops that you use unique and meaningful variable names.
 
 # 2 Dimensional Arrays
 
 ## Overview
 
-One practical application of using nested for loops is working with multi-dimensional arrays. 
+One practical application of using nested for loops is working with multi-dimensional arrays.
 
-If that sounds scary, fear not! The wording may be unfamiliar to you, but the code is very similar to what you already know. 
+If that sounds scary, fear not! The wording may be unfamiliar to you, but the code is very similar to what you already know.
 
-A 2 Dimensional array is simply an array whose elements are also arrays. 
+A 2 Dimensional array is simply an array whose elements are also arrays.
 
-It is an array of arrays. That is, a list of lists. A box containing boxes that contain items. 
+It is an array of arrays. That is, a list of lists. A box containing boxes that contain items.
 
 ```js
-let a = [ [2,4,6,8], [1,3,7,9], [4,3,8,6] ];
+let a = [
+	[2, 4, 6, 8],
+	[1, 3, 7, 9],
+	[4, 3, 8, 6],
+];
 
 // Many people visualize this as a grid, thinking of it as rows and columns...
 
 let a = [
-  [2,4,6,8],
-  [1,3,7,9],
-  [4,3,8,6]
+	[2, 4, 6, 8],
+	[1, 3, 7, 9],
+	[4, 3, 8, 6],
 ];
 ```
 
@@ -88,24 +94,24 @@ Lets loop over that and print out the grid ... the outer loop represents the ele
 
 ```js
 let drawTable = (table) => {
-  for(let i = 0; i <= table.length - 1; i++) {
-    let line = '';
-    for(let j = 0; j <= table[i].length - 1; j++){
-      line = line + table[i][j];
-    }
-    console.log(line);
-  }
+	for (let i = 0; i <= table.length - 1; i++) {
+		let line = '';
+		for (let j = 0; j <= table[i].length - 1; j++) {
+			line = line + table[i][j];
+		}
+		console.log(line);
+	}
 };
 drawTable(a);
 
-// Output: 
+// Output:
 
-  2468
-  1379
-  4386
+2468;
+1379;
+4386;
 ```
 
-In this example, we'll try and figure out which items in the arrays "touch" each other.  Look at the output from the previous example, and think about which numbers touch which each other (vertically, horizontally, and diagonally) when you visualize it as that grid.  By analyzing which are one above or below and one left or right, we can loop through and figure this out.
+In this example, we'll try and figure out which items in the arrays "touch" each other. Look at the output from the previous example, and think about which numbers touch which each other (vertically, horizontally, and diagonally) when you visualize it as that grid. By analyzing which are one above or below and one left or right, we can loop through and figure this out.
 
 ```js
 let touches = (table) => {
