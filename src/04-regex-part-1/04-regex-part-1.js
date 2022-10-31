@@ -13,8 +13,8 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 export const isNum = (input) => {
-  // Solution code here...
-
+	let validator = /[0-9]/g;
+	return validator.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -26,8 +26,15 @@ Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 export const isCapitalized = (str) => {
-  // Solution code here...
-
+	console.log(str);
+	let regex = /[A-Z]/g;
+	let arr = [];
+	str.split(' ').forEach((word) => {
+		if (word.match(regex)) {
+			arr.push(word.replace(/[.,)(]/g, ''));
+		}
+	});
+	return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,7 +44,10 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 
 export const citiesAtoJ = (arr) => {
-  // Solution code here...
+	const validator = /^[A-J]/g;
+	return arr.filter((city) => {
+		return city.match(validator);
+	});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -53,8 +63,9 @@ Do not use the vertical bar (pipe) in your pattern.
 ------------------------------------------------------------------------------------------------ */
 
 export const matchMonth = (input) => {
-  // Solution code here...
-
+	const validator = /^([oO](ct)\b)/;
+	const validator2 = /^([oO](ctober))/;
+	return validator.test(input) || validator2.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,8 +78,15 @@ For example, if given the string "Hello, and have a wonderful day!", the word "H
 The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "a ", "wonderful "].
 ------------------------------------------------------------------------------------------------ */
 
-export const noPunctuation = str => {
-  // Solution code here...
+export const noPunctuation = (str) => {
+	const validator = /[.,!():]/g;
+	const returnArr = [];
+	str.split(' ').forEach((word) => {
+		if (!word.match(validator)) {
+			returnArr.push(word + ' ');
+		}
+	});
+	return returnArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -84,7 +102,13 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 ------------------------------------------------------------------------------------------------ */
 
 export const hangman = (str) => {
-  // Solution code here...
+	const searchRegex = /[aeiou]/gi;
+	return str
+		.split(' ')
+		.map((word) => {
+			return word.replace(searchRegex, '_');
+		})
+		.join(' ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -100,5 +124,16 @@ Hint: All of these words end with the letters "ells".
 ------------------------------------------------------------------------------------------------ */
 
 export const findShells = (str) => {
-  // Solution code here...
+	console.log(str);
+	const validator = /ells/;
+	const punct = /[!.,()]/g;
+	return str
+		.split(' ')
+		.filter((word) => {
+			return validator.test(word);
+		})
+		.map((word) => {
+			console.log(word.replace(punct, ''));
+			return word.replace(punct, '');
+		});
 };

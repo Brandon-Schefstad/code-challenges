@@ -9,11 +9,15 @@ Then, write a function named speaker that takes in a string and a callback funct
 ------------------------------------------------------------------------------------------------ */
 
 export function greeting(message) {
-    // Solution code here...
-};
+	let returnMessage = '';
+	message.split('').forEach((char) => {
+		returnMessage += char.toUpperCase();
+	});
+	return returnMessage;
+}
 
-export const speaker = (message, callback) => {
-    // Solution code here...
+export const speaker = (message, greeting) => {
+	return greeting(message);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -33,11 +37,14 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 export const addValues = (arr, value) => {
-    // Solution code here...
+	arr.push(value);
 };
 
 export const addNumbers = (num, arr, times, callback) => {
-    // Solution code here...
+	for (let i = 1; i <= times; i++) {
+		addValues(arr, num);
+	}
+	return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -51,15 +58,18 @@ Then, write a function named removeElements that takes in an array and a callbac
 
 Return the modified array.
 ------------------------------------------------------------------------------------------------ */
-
-
-
 export const removeOne = (num, arr) => {
-    // Solution code here...
+	if (num % 3 == 2) {
+		arr.pop();
+	}
 };
 
-export const removeElements = (arr, callback) => {
-    // Solution code here...
+export const removeElements = (arr, removeOne) => {
+	for (let i = 0; i < arr.length; i++) {
+		removeOne(arr[i], arr);
+	}
+	console.log(arr);
+	return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -68,7 +78,9 @@ CHALLENGE 4
 Write a function named removeWithForEach that produces the same output as challenge 3, but uses forEach.
 ------------------------------------------------------------------------------------------------ */
 export const removeWithForEach = (arr, callback) => {
-    // Solution code here...
+	return arr.forEach((element) => {
+		removeOne(element, arr);
+	});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,7 +95,12 @@ in removeOne directly into this anonymous function.
 ------------------------------------------------------------------------------------------------ */
 
 export const removeWithAnon = (arr) => {
-    // Solution code here...
+	return arr.forEach((element) => {
+		console.log(element);
+		if (element % 3 == 2) {
+			arr.pop();
+		}
+	});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,7 +121,14 @@ This function should create another new array (the grocery list) and then use fo
 ------------------------------------------------------------------------------------------------ */
 
 export const createList = (arr) => {
-    // Solution code here...
+	let groceryList = [];
+	arr.forEach((item) => {
+		if (item.available === true) {
+			groceryList.push(item.name);
+		}
+	});
+	console.log(groceryList);
+	return groceryList;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -124,5 +148,17 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 export const fizzBuzz = (arr) => {
-    // Solution code here...
+	let fizzBuzzArr = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 15 === 0) {
+			fizzBuzzArr.push('Fizz Buzz');
+		} else if (arr[i] % 5 === 0) {
+			fizzBuzzArr.push('Buzz');
+		} else if (arr[i] % 3 === 0) {
+			fizzBuzzArr.push('Fizz');
+		} else {
+			fizzBuzzArr.push(arr[i]);
+		}
+	}
+	return fizzBuzzArr;
 };
