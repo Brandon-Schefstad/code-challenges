@@ -13,7 +13,39 @@ Return the array of the total number of cookies sold per hour for all of the sto
 ------------------------------------------------------------------------------------------------ */
 
 export const grandTotal = (stores) => {
-  // Solution code here...
+	const returnTotals = [];
+	for (let i = 0; i < stores.length; i++) {
+		stores[i].forEach((hour, index) => {
+			const obj = {
+				hour: index,
+				sales: hour,
+			};
+			returnTotals.push(obj);
+		});
+	}
+	return Object.values(
+		returnTotals.reduce(
+			(acc, val) => {
+				acc[val.hour] += val.sales;
+
+				return acc;
+			},
+			{
+				0: 0,
+				1: 0,
+				2: 0,
+				3: 0,
+				4: 0,
+				5: 0,
+				6: 0,
+				7: 0,
+				8: 0,
+				9: 0,
+				10: 0,
+				11: 0,
+			}
+		)
+	);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -27,7 +59,14 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 export const salesData = (hours, data) => {
-// Solution code here...
+	const objectArray = [];
+	data.forEach((hourly, i) => {
+		objectArray.push({
+			sales: hourly + ' cookies',
+			time: hours[i],
+		});
+	});
+	return objectArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,7 +76,14 @@ Write a function named howManyTreats that will return the quantity of treats you
 ------------------------------------------------------------------------------------------------ */
 
 export const howManyTreats = (arr) => {
-  // Solution code here...
+	console.log(arr);
+	return arr
+		.filter((store) => {
+			return store.store === 'Pet store';
+		})[0]
+		.items.filter((item) => {
+			return item.name === 'Treats';
+		})[0].quantity;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,7 +105,7 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 export const battleship = (board, row, col) => {
-// Solution code here...
+	return board[row][col] === '#' ? 'hit' : 'miss';
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -71,7 +117,13 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 export const calculateProduct = (numbers) => {
-  // Solution code here...
+	return numbers.reduce((acc, subArr) => {
+		acc *= subArr.reduce((acc, val) => {
+			acc *= val;
+			return acc;
+		}, 1);
+		return acc;
+	}, 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,7 +135,21 @@ Calculate the average daily temperature during that entire period. Your output s
 ------------------------------------------------------------------------------------------------ */
 
 export const averageDailyTemperature = (weather) => {
-  // Solution code here...
+	const totalTemps =
+		weather
+			.map((week) => {
+				return (
+					week.reduce((acc, temp, i) => {
+						acc += temp;
+						return acc;
+					}, 0) / week.length
+				);
+			})
+			.reduce((acc, avg) => {
+				acc += avg;
+				return acc;
+			}, 0) / weather.length;
+	return totalTemps;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,7 +163,18 @@ For example, in the data set below, the lowest weekly average is 46, which is th
 ------------------------------------------------------------------------------------------------ */
 
 export const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+	const totalTemps = weather.map((week) => {
+		return (
+			week.reduce((acc, temp, i) => {
+				acc += temp;
+				return acc;
+			}, 0) / week.length
+		);
+	});
+
+	return totalTemps.sort((a, b) => {
+		return a - b;
+	})[0];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,5 +190,13 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 export const excel = (str) => {
-  // Solution code here...
+	const rows = str.split(`\n`);
+	return rows.map((row) => {
+		console.log(row.split(','));
+		return row.split(',').reduce((a, c) => {
+			a += Number(c);
+			console.log(a);
+			return a;
+		}, 0);
+	});
 };

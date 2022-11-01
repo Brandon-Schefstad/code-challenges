@@ -9,7 +9,9 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 ------------------------------------------------------------------------------------------------ */
 
 export const toTitleCase = (arr) => {
-  // Solution code here...
+	return arr.map((word) => {
+		return word[0].toUpperCase() + word.substring(1);
+	});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -23,7 +25,21 @@ For example, "Lando Calrisian - Boba Fett - Princess Amidala".
 ------------------------------------------------------------------------------------------------ */
 
 export const biggerThanLuke = (arr) => {
-  // Solution code here...
+	const minMass = arr
+		.filter((person) => {
+			return person.name === 'Luke Skywalker';
+		})
+		.map((person) => {
+			return person.mass;
+		});
+	return arr
+		.filter((person) => {
+			return Number(person.mass) > Number(minMass);
+		})
+		.map((person) => {
+			return person.name;
+		})
+		.join(' - ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -41,7 +57,9 @@ This data could be sorted by name or price.
 ------------------------------------------------------------------------------------------------ */
 
 export const sortBy = (property, arr) => {
-  // Solution code here...
+	return arr.sort((a, b) => {
+		return a[property] > b[property];
+	});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -57,8 +75,10 @@ https://secure.com returns true because the URL is secure
 https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 
-export const isSecure = (url) => { 
-// Solution code here...
+export const isSecure = (url) => {
+	const regex = /(https:)+(\/\/)/;
+	console.log(url);
+	return regex.test(url);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -79,7 +99,45 @@ Here is a sample board:
   ['X', 'O', 'X'],
 ];
 ------------------------------------------------------------------------------------------------ */
+function colMaker(board, colNum) {
+	return board.reduce((acc, row) => {
+		acc.push(row[colNum]);
+		return acc;
+	}, []);
+}
 
+function checkWin(row0, row1, row2, col0, col1, col2, diag1, diag2) {
+	return (
+		row0.join('') === 'OOO' ||
+		row1.join('') === 'OOO' ||
+		row2.join('') === 'OOO' ||
+		col0.join('') === 'OOO' ||
+		col1.join('') === 'OOO' ||
+		col2.join('') === 'OOO' ||
+		diag1.join('') === 'OOO' ||
+		diag2.join('') === 'OOO' ||
+		row0.join('') === 'XXX' ||
+		row1.join('') === 'XXX' ||
+		row2.join('') === 'XXX' ||
+		col0.join('') === 'XXX' ||
+		col1.join('') === 'XXX' ||
+		col2.join('') === 'XXX' ||
+		diag1.join('') === 'XXX' ||
+		diag2.join('') === 'XXX'
+	);
+}
 export const detectTicTacToeWin = (board) => {
-  // Solution code here...
+	const row0 = board[0];
+	const row1 = board[1];
+	const row2 = board[2];
+	console.log([row0, row1, row2]);
+	const col0 = colMaker(board, 0);
+	const col1 = colMaker(board, 1);
+	const col2 = colMaker(board, 2);
+	console.log([col0, col1, col2]);
+	const diag1 = [row0[0], row1[1], row2[2]];
+	const diag2 = [row0[2], row1[1], row2[0]];
+	console.log([diag1, diag2]);
+	console.log(checkWin(row0, row1, row2, col0, col1, col2, diag1, diag2));
+	return checkWin(row0, row1, row2, col0, col1, col2, diag1, diag2);
 };
