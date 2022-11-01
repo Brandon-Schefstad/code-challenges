@@ -27,7 +27,6 @@ Write a function named forEachTwoToThe that produces the same output as your for
 export const forEachTwoToThe = (arr) => {
 	const returnArr = [];
 	arr.forEach((num, i) => {
-		console.log(arr[i]);
 		returnArr.push(2 ** arr[i]);
 	});
 	return returnArr;
@@ -111,7 +110,6 @@ Here is an example of a single array element: { name: 'speed', total: 35 }
 ------------------------------------------------------------------------------------------------ */
 
 export const extractStats = (arr) => {
-	console.log(arr);
 	return arr.map((stat) => {
 		return {
 			name: stat.stat.name,

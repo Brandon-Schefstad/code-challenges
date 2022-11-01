@@ -28,7 +28,13 @@ Return either true or false.
 Note: if you ever need to validate an email using a regex in practice, the Internet has the actual regex you should use. It's many many lines long.
 ------------------------------------------------------------------------------------------------ */
 
-export const validateEmail = (email) => {};
+export const validateEmail = (email) => {
+	const regex1 = /[A-Z0-9]+@[A-Z0-9]+[A-Z0-9].(\.[nco]+[eor]+[tmg])$/gi;
+	const regex2 =
+		/\b[A-Z]+(?:\.)[A-Z0-9]+@[A-Z0-9]+[A-Z0-9].(\.[nco]+[eor]+[tmg])$/gi;
+	console.log(email);
+	return regex1.test(email) && regex2.test(email);
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3

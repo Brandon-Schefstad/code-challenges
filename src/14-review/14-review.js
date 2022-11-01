@@ -77,7 +77,6 @@ https:/missingslash.org returns false because the URL is malformed
 
 export const isSecure = (url) => {
 	const regex = /(https:)+(\/\/)/;
-	console.log(url);
 	return regex.test(url);
 };
 
@@ -130,14 +129,11 @@ export const detectTicTacToeWin = (board) => {
 	const row0 = board[0];
 	const row1 = board[1];
 	const row2 = board[2];
-	console.log([row0, row1, row2]);
+
 	const col0 = colMaker(board, 0);
 	const col1 = colMaker(board, 1);
 	const col2 = colMaker(board, 2);
-	console.log([col0, col1, col2]);
 	const diag1 = [row0[0], row1[1], row2[2]];
 	const diag2 = [row0[2], row1[1], row2[0]];
-	console.log([diag1, diag2]);
-	console.log(checkWin(row0, row1, row2, col0, col1, col2, diag1, diag2));
 	return checkWin(row0, row1, row2, col0, col1, col2, diag1, diag2);
 };

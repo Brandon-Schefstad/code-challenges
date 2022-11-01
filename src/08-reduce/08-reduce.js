@@ -62,7 +62,6 @@ Write a function named countNumberOfChildren that, given the array of characters
 export const countNumberOfChildren = (arr) => {
 	return arr.reduce((accummulator, obj) => {
 		if (obj.hasOwnProperty('children')) {
-			// console.log(obj.children.length);
 			accummulator += Number(obj.children.length);
 		}
 		return accummulator;
@@ -118,7 +117,6 @@ const isPrime = (value) => {
 export const countPrimeNumbers = (arr) => {
 	return arr.reduce((accummulator, num) => {
 		if (isPrime(num)) {
-			// console.log(num);
 			accummulator += 1;
 		}
 		return accummulator;
@@ -136,11 +134,9 @@ Hint: The accumulator should begin as { min: 0, max: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 export const effortStats = (arr) => {
-	console.log(arr);
 	const accummulator = { min: 0, max: 0 };
 	return arr.reduce((accummulator, stat) => {
 		if (stat.effort > accummulator.max) {
-			console.log(stat.effort);
 			accummulator.max = stat.effort;
 		}
 		if (accummulator.min === 0) {

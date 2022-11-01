@@ -85,11 +85,10 @@ For example, "Luke Skywalker and C-3PO".
 ------------------------------------------------------------------------------------------------ */
 
 export const findTallerThan = (minHeight, data) => {
-	console.log(minHeight);
 	const names = data.filter((character) => {
 		return character.height > minHeight;
 	});
-	console.log(names);
+
 	return names.reduce((acc, obj, i) => {
 		if (i === names.length - 1) {
 			acc += obj.name;

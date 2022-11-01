@@ -49,7 +49,7 @@ Do not use split for this function.
 
 export const listFoods = (recipe) => {
 	return recipe.ingredients.map((ingredient) => {
-		return;
+		return ingredient.split(' ').splice(2).join(' ');
 	});
 };
 
@@ -97,10 +97,12 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 export const removeEvenValues = (arr) => {
-	console.log(arr);
-	return arr.filter((num) => {
-		return num % 2 !== 0;
-	});
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 === 0) {
+			arr.splice(i, 1);
+			i--;
+		}
+	}
 };
 
 /* ------------------------------------------------------------------------------------------------

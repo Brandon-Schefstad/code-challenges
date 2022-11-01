@@ -75,7 +75,7 @@ const gruffaloCrumble = {
 	],
 };
 
-skip('It should return a list of foods', (assert) => {
+test('It should return a list of foods', (assert) => {
 	assert.deepEqual(listFoods(gruffaloCrumble), [
 		'Gruffalo',
 		'oats',
@@ -91,7 +91,7 @@ skip('It should return a list of foods', (assert) => {
 	]);
 });
 
-skip('It should return a list of foods', (assert) => {
+test('It should return a list of foods', (assert) => {
 	assert.deepEqual(splitFoods(gruffaloCrumble), [
 		'Gruffalo',
 		'oats',
@@ -121,7 +121,7 @@ test('It should return a list of recipe steps', (assert) => {
 	]);
 });
 
-skip('It should remove the even numbers from the array', (assert) => {
+test('It should remove the even numbers from the array', (assert) => {
 	let list = [1, 2, 3, 4, 5, 6];
 	removeEvenValues(list);
 	assert.deepEqual(list, [1, 3, 5]);

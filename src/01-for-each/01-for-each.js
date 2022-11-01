@@ -68,7 +68,6 @@ export const removeElements = (arr, removeOne) => {
 	for (let i = 0; i < arr.length; i++) {
 		removeOne(arr[i], arr);
 	}
-	console.log(arr);
 	return arr;
 };
 
@@ -96,7 +95,6 @@ in removeOne directly into this anonymous function.
 
 export const removeWithAnon = (arr) => {
 	return arr.forEach((element) => {
-		console.log(element);
 		if (element % 3 == 2) {
 			arr.pop();
 		}
@@ -127,7 +125,6 @@ export const createList = (arr) => {
 			groceryList.push(item.name);
 		}
 	});
-	console.log(groceryList);
 	return groceryList;
 };
 

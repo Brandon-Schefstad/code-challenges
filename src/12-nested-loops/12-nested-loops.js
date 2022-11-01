@@ -76,7 +76,6 @@ Write a function named howManyTreats that will return the quantity of treats you
 ------------------------------------------------------------------------------------------------ */
 
 export const howManyTreats = (arr) => {
-	console.log(arr);
 	return arr
 		.filter((store) => {
 			return store.store === 'Pet store';
@@ -192,10 +191,8 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 export const excel = (str) => {
 	const rows = str.split(`\n`);
 	return rows.map((row) => {
-		console.log(row.split(','));
 		return row.split(',').reduce((a, c) => {
 			a += Number(c);
-			console.log(a);
 			return a;
 		}, 0);
 	});

@@ -26,7 +26,6 @@ Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 export const isCapitalized = (str) => {
-	console.log(str);
 	let regex = /[A-Z]/g;
 	let arr = [];
 	str.split(' ').forEach((word) => {
@@ -124,7 +123,6 @@ Hint: All of these words end with the letters "ells".
 ------------------------------------------------------------------------------------------------ */
 
 export const findShells = (str) => {
-	console.log(str);
 	const validator = /ells/;
 	const punct = /[!.,()]/g;
 	return str
@@ -133,7 +131,6 @@ export const findShells = (str) => {
 			return validator.test(word);
 		})
 		.map((word) => {
-			console.log(word.replace(punct, ''));
 			return word.replace(punct, '');
 		});
 };

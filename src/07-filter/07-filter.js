@@ -84,7 +84,6 @@ Write a function named getCharactersWithoutChildren that, given the array of cha
 ------------------------------------------------------------------------------------------------ */
 
 export const getCharactersWithoutChildren = (arr) => {
-	console.log(arr);
 	return arr.filter((character) => {
 		return !character.hasOwnProperty('children');
 	});

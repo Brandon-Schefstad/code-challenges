@@ -136,29 +136,26 @@ For example, ['Tuesday', 'Monday', 'Wednesday and Thursday', 'Tuesday 2', 'Thurs
 ------------------------------------------------------------------------------------------------ */
 
 const daysOfWeek = [
-	'monday',
-	'tuesday',
-	'wednesday',
-	'thursday',
-	'friday',
-	'saturday',
-	'sunday',
+	'Monday',
+	'Tuesday',
+	'Wednesday',
+	'Thursday',
+	'Friday',
+	'Saturday',
+	'Sunday',
 ];
 
 export const sortByDay = (arr) => {
-	const returnArr = [[], [], [], [], [], [], []];
-	console.log(
-		arr.map((elem) => {
-			return elem.split(' ').filter((word) => {
-				const regex = /[,]/g;
-				const regex2 = /s$/g;
-				word.replace(regex, '');
-				word.replace(regex2, '');
-				console.log(word);
-			});
-		})
-	);
-	// return arr;
+	const acc = [[], [], [], [], [], [], []];
+	return arr.reduce((acc, event) => {
+		console.log(acc);
+		daysOfWeek.forEach((day, i) => {
+			if (event.includes(day)) {
+				acc[i].push(event);
+			}
+		});
+		return acc;
+	}, acc);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -170,5 +167,7 @@ For example, ['abcd', 'efgh', 'ijkl', 'mnop'] returns ['a', 'f', 'k', 'p']
 ------------------------------------------------------------------------------------------------ */
 
 export const characterByIndex = (arr) => {
-	// Solution code here...
+	return arr.map((word, i) => {
+		return word[i];
+	});
 };
